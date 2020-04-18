@@ -1,0 +1,29 @@
+{
+  "name": "workdays",
+  "version": "1.0.0",
+  "description": "Working days tracker",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verillospur/workdays.git"
+  },
+  "keywords": [
+    "verillospur",
+    "vsotw",
+    "workdays",
+    "workingdays",
+    "tracker"
+  ],
+  "author": "Ben Sturley <bensturley@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/verillospur/workdays/issues"
+  },
+  "homepage": "https://github.com/verillospur/workdays#readme",
+  "dependencies": {
+    "moment": "^2.24.0"
+  }
+}
