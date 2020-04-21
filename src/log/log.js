@@ -81,5 +81,6 @@ module.exports = {
     getLevel: getLevel,
     getLevelNum: getLevelNum,
     getLevels: getLevels,
-    getStamp: getStamp
+    getStamp: getStamp,
+    levels: getLevels()
 }

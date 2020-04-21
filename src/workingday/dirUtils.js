@@ -11,18 +11,26 @@
 'use strict';
 
 const config = require('../config');
-
 const path = require('path');
+const fs = require('fs');
+
+const getDataDirectoryPath = () => {
+    const datadir = config.WORKINGDAY.DATA_DIRECTORY_PATH;
+    return datadir;
+};
 
 const dataDirectoryExists = () => {
-    datadir = config.WORKINGDAY.DATA_DIRECTORY_PATH;
+    const datadir = getDataDirectoryPath();
+    return fs.existsSync(datadir);
 };
 
 const createDataDirectory = () => {
-
+    const e = new Error('Fuck off!');
+    throw e;
 };
 
 module.exports = {
     dataDirectoryExists: dataDirectoryExists,
-    createDataDirectory: createDataDirectory
+    createDataDirectory: createDataDirectory,
+    getDataDirectoryPath: getDataDirectoryPath,
 };
