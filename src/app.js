@@ -15,20 +15,11 @@ const exec = require('./exec');
 log.add('Working...', log.levels.info);
 log.add('... apparently.', log.levels.verbose);
 
+const workingDay = require('./workingday/workingday');
 
-const du = require('./workingday/dirUtils');
-exec.try(
-    () => {
-        return log.add(`datadir: ${du.getDataDirectoryPath()}`);
-    }
-);
+const welcome = require('./welcome');
+welcome.show();
 
 
-exec.try(() => {du.createDataDirectory();});
-exec.try(du.createDataDirectory);
-
-if (!exec.try(du.dataDirectoryExists)) {
-    exec.try(du.createDataDirectory);
-}
-
-
+const wd = new workingDay(new Date());
+console.log(JSON.stringify(wd));

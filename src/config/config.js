@@ -14,6 +14,12 @@ const config = () => {
 
     return {
         
+        APP_NAME: 'vsotw-workdays',
+        APP_WMSG: [
+            'verillospur: [o] n [t] h e [w] e b',
+            'part of The Urchin Maccleschlong Group'
+            ],
+
         LOG: require('../log/config'),
         WORKINGDAY: require('../workingday/config')
     };

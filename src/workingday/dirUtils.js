@@ -14,23 +14,34 @@ const config = require('../config');
 const path = require('path');
 const fs = require('fs');
 
+/**
+ * * Get the path to the data directory. Returns string.
+ */
 const getDataDirectoryPath = () => {
     const datadir = config.WORKINGDAY.DATA_DIRECTORY_PATH;
     return datadir;
 };
 
+/**
+ * * Check if the data directory exists. Returns boolean.
+ */
 const dataDirectoryExists = () => {
     const datadir = getDataDirectoryPath();
     return fs.existsSync(datadir);
 };
 
+/**
+ * * Create the data directory. Returns true if successful.
+ */
 const createDataDirectory = () => {
-    const e = new Error('Fuck off!');
-    throw e;
+    
+    
 };
 
+//#region exports
 module.exports = {
     dataDirectoryExists: dataDirectoryExists,
     createDataDirectory: createDataDirectory,
     getDataDirectoryPath: getDataDirectoryPath,
 };
+//#endregion

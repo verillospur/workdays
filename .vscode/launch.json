@@ -14,7 +14,8 @@
             "program": "${workspaceFolder}\\src\\app.js",
             "env": {
                 "LOG_LEVEL": "verbose"
-            }
+            },
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }

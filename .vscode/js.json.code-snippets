@@ -18,6 +18,7 @@
 	"File descriptor header": {
 		"scope": "javascript,typescript",
 		"prefix": "fdh",
+		"description": "File descriptor header",
 		"body": [
 			"// file.js ",
 			"//  ~/file.js ",
@@ -25,11 +26,10 @@
 			"//  File description. ",
 			"// ",
 			"// --------------------------------------------- ",
-			"// \t2020-01-01\t\txx\t\tCreated. ",
+			"// \t2020-01-01\t\tBS\t\tCreated. ",
 			"// ",
 			"// --------------------------------------------- ",
 			"// "
 		],
-		"description": "File descriptor header"
 	}
 }

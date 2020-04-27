@@ -1,0 +1,21 @@
+{
+    "_value": "Value!",
+    "_date": "2020-04-27T05:02:53.289Z",
+    "_year": 2020,
+    "_month": 3,
+    "_day": 27,
+    "_loadingTime": "2020-04-27T05:02:53.289Z",
+    "_debriefTime": "2020-04-27T05:02:53.289Z",
+    "_shiftLength": "",
+    "_actualShiftLength": 0,
+    "_mileageLoading": 0,
+    "_mileageDebrief": 0,
+    "_routeNumber": "",
+    "_paymentOwed": 0,
+    "_packageCount": 0,
+    "_stopCount": 0,
+    "_missingCount": 0,
+    "_extrasCount": 0,
+    "_returnsCount": 0,
+    "_returnsInfo": ""
+}
