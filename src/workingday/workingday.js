@@ -16,22 +16,20 @@
 class workingDay {
 
     constructor(date) {
-    
+
         //#region property initialisation
-        
+
         this._value = 'Value!';
 
         const now = date || new Date();
 
-        this._date = now;
-        this._year = now.getFullYear();
-        this._month = now.getMonth();
-        this._day = now.getDate();
+        this._setDate(now);
 
         this._loadingTime = now;
         this._debriefTime = now;
+        this._breakMinutes = 0;
+        this._shiftActualMinutes = 0;
         this._shiftLength = '';
-        this._actualShiftLength = 0;
         this._mileageLoading = 0;
         this._mileageDebrief = 0;
         this._routeNumber = '';
@@ -44,13 +42,27 @@ class workingDay {
         this._returnsInfo = '';
 
         //#endregion
-    
+
     }
 
-    //#region property gets
+    //#region private methods
+
+    _setDate(date) {
+        this._date = date;
+        this._year = date.getFullYear();
+        this._month = date.getMonth();
+        this._day = date.getDate();
+    }
+
+    //#endregion
+
+    //#region property accessors
 
     get date() {
         return this._date;
+    }
+    set date(v) {
+        this._setDate(v);
     }
 
     get year() {
@@ -66,15 +78,38 @@ class workingDay {
     get loadingTime() {
         return this._loadingTime;
     }
+    set loadingTime(v) {
+        this._loadingTime = v;
+    }
+
     get debriefTime() {
         return this._debriefTime;
     }
+    set debriefTime(v) {
+        this._debriefTime = v;
+    }
+
+    get breakMinutes() {
+        return this._breakMinutes;
+    }
+    set breakMinutes(v) {
+        this._breakMinutes = v;
+    }
+
+    get shiftActualMinutes() {
+        return this._shiftActualMinutes;
+    }
+    set shiftActualMinutes(v) {
+        this._shiftActualMinutes = v;
+    }
+
     get shiftLength() {
         return this._shiftLength;
     }
-    get actualShiftLength() {
-        return this._actualShiftLength;
+    set shiftLength(v) {
+        this._shiftLength = v;
     }
+
     get mileageLoading() {
         return this._mileageLoading
     }
@@ -122,9 +157,57 @@ class workingDay {
         return myClass._thing;
     }
 
+    static calculateShiftMinutes(start, finish) {
+        const moment = require('moment');
+        moment(finish).diff(moment(start), 'minutes');
+    }
+
     //#endregion
 
     //#region public methods
+
+    //#region setShiftTimes()
+
+    /**
+     * * Sets the following properties:
+     * * - loadingTime
+     * * - debriefTime
+     * * - breakMinutes
+     * * - shiftActualMinutes
+     * @param {*} loadingTimeHour 
+     * @param {*} loadingTimeMinute 
+     * @param {*} debriefTimeHour 
+     * @param {*} debriefTimeMinute 
+     * @param {*} breakMinutes 
+     */
+    setShiftTimes(loadingTimeHour,
+        loadingTimeMinute,
+        debriefTimeHour,
+        debriefTimeMinute,
+        breakMinutes
+    ) {
+
+        const loadTime = new Date(
+            this.year, this.month, this.day,
+            loadingTimeHour, loadingTimeMinute,
+            0, 0);
+        const debTime = new Date(
+            this.year, this.month, this.day,
+            debriefTimeHour, debriefTimeMinute,
+            0, 0);
+
+        breakMinutes = 0 || breakMinutes;
+
+        this._shiftActualMinutes = (
+            workingDay.calculateShiftMinutes(loadTime, debTime)
+            - breakMinutes);
+
+        this._loadingTime = loadTime;
+        this._debriefTime = debTime;
+        this._breakMinutes = breakMinutes;
+    }
+
+    //#endregion
 
     getValue() {
         return this._value;
@@ -138,11 +221,5 @@ class workingDay {
 
 
 };
-
-
-// const day1 = new workingDay();
-// const day2 = new workingDay(new Date(2020, 3, 5));
-
-// console.log(`Working.\n day1: ${day1.getDay()} \n day2: ${day2.getDay()}`);
 
 module.exports = workingDay;

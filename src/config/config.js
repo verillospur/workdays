@@ -17,7 +17,7 @@ const config = () => {
         APP_NAME: 'vsotw-workdays',
         APP_WMSG: [
             'verillospur: [o] n [t] h e [w] e b',
-            'part of The Urchin Maccleschlong Group'
+            'a proud member of The Urchin McSchlong Group'
             ],
 
         LOG: require('../log/config'),

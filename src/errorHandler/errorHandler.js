@@ -12,8 +12,12 @@
 
 const log = require('../log');
 
+/**
+ * Handle an exception.
+ * @param {Error} e 
+ */
 const handler = e => {
-    log.add(e, log.getLevels().error);
+    log.error(e, log.getLevels().error);
 };
 
 module.exports = {

@@ -12,8 +12,8 @@
 
 const moment = require('moment');
 const config = require('../config');
-const LOG_LEVELS = require('./levels');
 
+const LOG_LEVELS = require('./levels');
 
 const DEFAULT_LOG_LEVEL = LOG_LEVELS.verbose;
 
@@ -88,8 +88,8 @@ const checkLevel = level => {
 
 /**
  * * Adds a message to the application log. Returns true if successful.
- * @param {*} data Content (message) to add to the log.
- * @param {*} level Log level to apply.
+ * @param {string} data Content (message) to add to the log.
+ * @param {} level Log level to apply.
  * The message is added to the log if the log level is equal or greater
  * than the level specified in LOG_LEVEL environment variable.
  */
@@ -138,6 +138,31 @@ const add = (data, level) => {
     return rv;
 };
 
+/**
+ * * Alias of add() passing LOG_LEVELS.error as log level
+ * @param {Error} err 
+ */
+const error = (err) => {
+    return add(err, LOG_LEVELS.error);
+}
+
+/**
+ * * Output a horizontal line to the log. Returns true if successful.
+ * @param {*} level Log level
+ */
+const line = (level) => {
+    level = level || DEFAULT_LOG_LEVEL;
+
+    if (checkLevel(level)) {
+        let m = LINE_CHAR;
+        for (let i = 0; i <= LINE_LEN; i++) {
+            m = m + LINE_CHAR;
+        }
+        return add(m, level);
+    }
+}
+
+//#region --{ experimental }--
 
 /**
  * * Outputs tabular information to the log. 
@@ -158,22 +183,7 @@ const table = (data, level) => {
     // todo TODO: this function
 };
 
-
-/**
- * * Output a horizontal line to the log. Returns true if successful.
- * @param {*} level Log level
- */
-const line = (level) => {
-    level = level || DEFAULT_LOG_LEVEL;
-
-    if (checkLevel(level)) {
-        let m = LINE_CHAR;
-        for (let i = 0; i <= LINE_LEN; i++) {
-            m = m + LINE_CHAR;
-        }
-        return add(m, level);
-    }
-}
+//#endregion
 
 //#endregion
 

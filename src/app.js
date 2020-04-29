@@ -20,6 +20,20 @@ const workingDay = require('./workingday/workingday');
 const welcome = require('./welcome');
 welcome.show();
 
+const moment = require('moment');
+const date10April20at0h15m = new Date(2020, 4, 10, 0, 15, 0, 0);
+const date10April20at0h40m = new Date(2020, 4, 10, 0, 40, 0, 0);
+const dateDiffMins = moment(date10April20at0h40m).diff(moment(date10April20at0h15m), 'minutes');
+// console.log(dateDiffMins);
 
-const wd = new workingDay(new Date());
-console.log(JSON.stringify(wd));
+const tests = require('./workingday/tests');
+
+tests.day_store.testWrite();
+
+const wd1 = new workingDay(tests.sample_day.getWorkingDate());
+const wd2 = tests.sample_day.create();
+
+// console.log(wd1.toJson());
+// console.log(wd2.toJson());
+
+
