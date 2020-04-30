@@ -113,33 +113,47 @@ class workingDay {
     get mileageLoading() {
         return this._mileageLoading
     }
+
     get mileageDebrief() {
         return this._mileageDebrief
     }
+    
     get routeNumber() {
         return this._routeNumber;
+    }    
+    set routeNumber(v) {
+        this._routeNumber = v;
     }
+
+
     get paymentOwed() {
         return this._paymentOwed;
     }
+
     get packageCount() {
         return this._packageCount;
     }
+
     get stopCount() {
         return this._stopCount;
     }
+
     get missingCount() {
         return this._missingCount;
     }
+
     get extrasCount() {
         return this._extrasCount;
     }
+
     get returnsCount() {
         return this._returnsCount;
     }
+
     get returnsInfo() {
         return this._returnsInfo;
     }
+
 
     //#endregion
 
@@ -209,12 +223,21 @@ class workingDay {
 
     //#endregion
 
+    getUniqueName() {
+        const namer = require('./dayNamer');
+        return namer.getUniqueName(this);
+    }
+
     getValue() {
         return this._value;
     }
 
     toJson() {
         return JSON.stringify(this);
+    }
+
+    toPersistanceDataString() {
+        return this.toJson();
     }
 
     //#endregion

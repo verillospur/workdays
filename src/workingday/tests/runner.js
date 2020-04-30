@@ -15,9 +15,11 @@ const errorHandler = require('../../errorHandler');
 
 const run = () => {
 
+    const fs = require('fs');
+    
+
 };
 
 module.exports = {
     run: run, 
-    errorHandler
 }

@@ -190,6 +190,7 @@ const table = (data, level) => {
 //#region exports
 module.exports = {
     add: add,
+    error: error,
     line: line,
     table: table,
 

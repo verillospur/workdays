@@ -28,12 +28,17 @@ const dateDiffMins = moment(date10April20at0h40m).diff(moment(date10April20at0h1
 
 const tests = require('./workingday/tests');
 
+// * ***************************************************
+// ! ---------------------------------------------------
+// ?----------------------------------------------------
+// todo: this. complete the tests runner.
+// ?----------------------------------------------------
+// ! ---------------------------------------------------
+// * ***************************************************
 tests.day_store.testWrite();
 
-const wd1 = new workingDay(tests.sample_day.getWorkingDate());
-const wd2 = tests.sample_day.create();
 
-// console.log(wd1.toJson());
-// console.log(wd2.toJson());
 
+// const wd1 = new workingDay(tests.sample_day.getWorkingDate());
+// const wd2 = tests.sample_day.create();
 

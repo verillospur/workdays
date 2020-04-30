@@ -31,5 +31,13 @@
 			"// --------------------------------------------- ",
 			"// "
 		],
+	},
+	"Add to log": {
+		"scope": "javascript,typescript",
+		"prefix": "la",
+		"description": "Log-dot-add",
+		"body": [
+			"log.add(``);"
+		],
 	}
 }
