@@ -89,7 +89,7 @@ const checkLevel = level => {
 /**
  * * Adds a message to the application log. Returns true if successful.
  * @param {string} data Content (message) to add to the log.
- * @param {} level Log level to apply.
+ * @param {LOG_LEVELS} level Log level to apply.
  * The message is added to the log if the log level is equal or greater
  * than the level specified in LOG_LEVEL environment variable.
  */

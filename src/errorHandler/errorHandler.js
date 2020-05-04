@@ -10,14 +10,13 @@
 // 
 'use strict';
 
-const log = require('../log');
-
 /**
  * * Handle an exception.
  * @param {Error} e The error to handle.
  * @param {boolean} doNotSuppress If true, throws the error after handling
  */
 const handler = (e, doNotSuppress) => {
+    const log = require('../log');    
     log.error(e, log.getLevels().error);
     doNotSuppress = doNotSuppress || false;
     if (doNotSuppress) throw e;

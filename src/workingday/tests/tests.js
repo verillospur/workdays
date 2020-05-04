@@ -11,8 +11,6 @@
 'use strict';
 
 const workingDay = require('../../workingday');
-const daywriter = require('../../workingday/daywriter');
-const dayreader = require('../../workingday/dayreader');
 
 const tests = {
 
@@ -20,19 +18,16 @@ const tests = {
 
     day_store: {
 
-        testWrite: require('./test-write')
-
+        testWrite: require('./test-write'),
+        generateDebriefText: require('./test-debriefgen')
     },
-
     //#endregion
 
     //#region sample_day
 
     sample_day: {
 
-        create: () => new workingDay(tests.sample_day.getWorkingDate())
-        ,
-
+        create: () => new workingDay(tests.sample_day.getWorkingDate()),
         getWorkingDate: () => new Date()
 
     }

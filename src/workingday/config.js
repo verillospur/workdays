@@ -36,6 +36,10 @@ const config = (() => {
         //
         DATAFILE_ENCODING: 'utf8',
 
+        // * Template for debrief text generation.
+        //
+        DEBRIEF_TEMPLATE: require('./debrieftemplateloader')
+
     };
 })();
 
