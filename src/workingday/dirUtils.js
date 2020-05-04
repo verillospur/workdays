@@ -34,8 +34,19 @@ const dataDirectoryExists = () => {
  * * Create the data directory. Returns true if successful.
  */
 const createDataDirectory = () => {
-    
-    
+    let rv = false;
+    try {
+        
+        const datadir = getDataDirectoryPath();
+        const fs = require('fs');
+        fs.mkdirSync(datadir);
+
+        rv = true;
+    } catch (err) {
+        const errorHandler = require('../errorHandler');
+        errorHandler.handle(err);
+    }
+    return rv;
 };
 
 //#region exports

@@ -11,6 +11,7 @@
 'use strict';
 
 const log = require('../log');
+const utils = require('../utils');
 
 /**
  * * Generate a debrief report for a working day.
@@ -37,11 +38,10 @@ const generateReport = dayObject => {
     lg(template);
 
     // double-digitor (e.g. '3' -> '03')
-    const dd = n => new Intl.NumberFormat('en-GB', { minimumIntegerDigits: 2 }).format(n);
+    const dd = utils.doubleDigits;
 
     // time formatter
-    const moment = require('moment');
-    const tf = t => moment(t).format(moment.HTML5_FMT.TIME);
+    const tf = utils.formatTime;
 
     // build output
     lg('building report');

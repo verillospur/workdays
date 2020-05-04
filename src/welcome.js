@@ -40,6 +40,15 @@ const showWelcome = () => {
 
 };
 
+const showGoodbye = () => {
+
+    log.line();
+    log.add('* execution complete. ');
+    log.line();
+    log.add('goodbye!');
+};
+
 module.exports = {
-    show: showWelcome
+    show: showWelcome,
+    goodbye: showGoodbye
 };

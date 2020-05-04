@@ -24,7 +24,8 @@ welcome.show();
 //runner.run();
 
 const tests = require('./workingday/tests');
-tests.day_store.generateDebriefText();
+// tests.day_store.generateDebriefText();
+tests.day_store.testWrite();
 
 
 // const moment = require('moment');
@@ -48,3 +49,4 @@ tests.day_store.generateDebriefText();
 
 
 
+welcome.goodbye();

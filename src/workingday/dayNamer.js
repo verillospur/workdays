@@ -10,6 +10,7 @@
 // 
 'use strict';
 
+const utils = require('../utils');
 
 /**
  * * Generate a unique name for a workingDay object.
@@ -29,8 +30,8 @@ const getUniqueName = dayObject => {
 
         // get data for placeholders
         const year = dayObject.year;
-        const month = dayObject.month;
-        const day = dayObject.day;
+        const month = utils.doubleDigits(dayObject.month);
+        const day = utils.doubleDigits(dayObject.day);
         const routeNumber = dayObject.routeNumber;
 
         // construct name

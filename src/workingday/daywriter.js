@@ -38,10 +38,22 @@ const performWrite = dayObject => {
         const dirpath = config.WORKINGDAY.DATA_DIRECTORY_PATH;
         lg(`data directory: ${dirpath}`);
 
+        // check data directory
+        const du = require('./dirUtils');
+        if (!du.dataDirectoryExists()) {
+            lg('data directory does not exist');
+            if (!du.createDataDirectory()) {
+                lg('data directory could not be created');
+                throw new Error('Could not create data directory.');
+            }
+            lg('data directory created');
+        }
+
         // build file name
         let filename = dayObject.getUniqueName();
-        filename += '.' + config.WORKINGDAY.DATAFILE_USE_JSON_FILEEXT ?
-            'json' : config.WORKINGDAY.DATAFILE_DEFAULTEXT;
+        filename += '.';
+        filename += (config.WORKINGDAY.DATAFILE_USE_JSON_FILEEXT ?
+            'json' : config.WORKINGDAY.DATAFILE_DEFAULTEXT);
         lg(`generated filename: ${filename}`);
         
         // get content
@@ -51,22 +63,29 @@ const performWrite = dayObject => {
         // kablintzify it
         const enc = config.WORKINGDAY.DATAFILE_ENCODING;
         const fileData = Buffer.from(dataRaw, enc);
-        lg(`generated fileData: ${fileData.length}`);
+        lg(`generated fileData.length: ${fileData.length}`);
+
+        const path = require('path');
+        const filepath = path.join(dirpath, filename);
 
         //
         // write the file
-        lg('writing file...');
+        lg(`writing file: ${filepath}`);
         const fs = require('fs');
-        fs.writeFile(dirpath, fileData, () => { lg('[fs.writeFile() callback]'); });
+        fs.writeFile(filepath, fileData, () => { lg('[fs.writeFile() callback]'); });
         
         lg('[end-of-block]');
 
         rv = true;
+
+
     } catch (err) {
+
         const errorHandler = require('../errorHandler');
         errorHandler.handle(err);
         lg(`handled error: ${err.message}`);
     }
+
 
     lg('all done.');
     return rv;
