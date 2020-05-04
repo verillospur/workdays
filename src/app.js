@@ -20,13 +20,11 @@ const workingDay = require('./workingday/workingday');
 const welcome = require('./welcome');
 welcome.show();
 
+// const runner = require('./workingday/tests/runner');
+//runner.run();
 
-const runner = require('./workingday/tests/runner');
-runner.run();
-
-
-const loader = require('./workingday/debrieftemplateloader');
-loader.load()
+const tests = require('./workingday/tests');
+tests.day_store.generateDebriefText();
 
 
 // const moment = require('moment');
@@ -34,8 +32,6 @@ loader.load()
 // const date10April20at0h40m = new Date(2020, 4, 10, 0, 40, 0, 0);
 // const dateDiffMins = moment(date10April20at0h40m).diff(moment(date10April20at0h15m), 'minutes');
 // console.log(dateDiffMins);
-
-// const tests = require('./workingday/tests');
 
 // * ***************************************************
 // ! ---------------------------------------------------

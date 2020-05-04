@@ -10,7 +10,6 @@
 // 
 'use strict';
 
-const errorHandler = require('../errorHandler');
 
 /**
  * * Generate a unique name for a workingDay object.
@@ -41,6 +40,7 @@ const getUniqueName = dayObject => {
         rv = objname;
 
     } catch (err) {
+        const errorHandler = require('../errorHandler');
         errorHandler.handle(err);
     }
 

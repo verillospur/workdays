@@ -36,7 +36,7 @@ const config = (() => {
         //
         DATAFILE_ENCODING: 'utf8',
 
-        // * Template for debrief text generation.
+        // * Template for debrief report.
         //
         DEBRIEF_TEMPLATE: require('./debrieftemplateloader')
 

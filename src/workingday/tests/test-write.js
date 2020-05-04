@@ -11,7 +11,6 @@
 'use strict';
 
 const log = require('../../log');
-const errorHandler = require('../../errorHandler');
 
 // ! bit of a "loop-back" as it were, here.... 
 // todo: sort it out!
@@ -23,16 +22,23 @@ const getDefaultObject = () => require('../../workingday/tests').sample_day.crea
  * @param {workingDay} dayObject The workingDay object to save
  */
 const test_write = dayObject => {
+    const lg = msg => { log.add(`[test_write()]: ${msg}`, 'verbose'); };
+
     dayObject = dayObject || getDefaultObject();
     let rv = false;
     try {
         
+        lg(' writing...');
         const writerFx = require('./../daywriter');
         const writer = writerFx.create();
-        const wrwiterSuccess = writer.write(dayObject);
+        const writerSuccess = writer.write(dayObject);
         
-        rv = true;
+        lg(`writerSuccess: ${writerSuccess}`)
+
+        rv = writerSuccess;
     } catch (e) {
+        lg(`error: ${err.msg}`);
+        const errorHandler = require('../../errorHandler');
         errorHandler.handle(e);
     }
 

@@ -10,8 +10,6 @@
 // 
 'use this';
 
-const errorHandler = require('../errorHandler');
-
 /**
  * * Validate a workingDay object.
  * * Returns true if validation passes, false if validation fails.
@@ -19,11 +17,16 @@ const errorHandler = require('../errorHandler');
  * @param {function} callback Validation callback: (err, validationSuccess, validationMessages[])
  */
 const validator = (dayObject, callback) => {
+
+    const log = require('../log');
+    const lg = msg => { log.add(`[validator()]: ${msg}`, 'verbose') };
+
     // const workingDay = require('./workingday');
     // if (!dayObject || !(dayObject instanceof workingDay)) {
     //     throw new Error('Invalid workingDay object');
     // }
     if (!require('./fw-pv').isWorkingDayInstance(dayObject)) {
+        lg('invalid workingDay object')
         throw new Error('Invalid workingDay object');
     }
     
@@ -53,6 +56,7 @@ const validator = (dayObject, callback) => {
         success = true;
         
     } catch (err) {
+        const errorHandler = require('../errorHandler');
         errorHandler.handle(err, false);
 
         // validation fails

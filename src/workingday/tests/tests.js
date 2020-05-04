@@ -12,6 +12,17 @@
 
 const workingDay = require('../../workingday');
 
+const create_sample_day = () => {
+    const o = new workingDay(tests.sample_day.getWorkingDate());
+    o.setShiftTimes(10, 45, 19, 20, 10);
+    o.routeNumber = 'T385';
+    o.packageCount = 220;
+    o.stopCount = 158;
+    o.mileageLoading = 52649;
+    o.mileageDebrief = 52784;
+    return o;
+};
+
 const tests = {
 
     //#region day_store
@@ -27,7 +38,7 @@ const tests = {
 
     sample_day: {
 
-        create: () => new workingDay(tests.sample_day.getWorkingDate()),
+        create: create_sample_day,
         getWorkingDate: () => new Date()
 
     }

@@ -1,7 +1,7 @@
 Name: Ben Sturley
 Date: ${year}-${month}-${day}
 Reg: NA67 VGX
-Mileage: ${(mileageDebrief - mileageLoading)}
+Mileage: ${mileage}
 Route: ${routeNumber}
 Parcels: ${packageCount} (${stopCount} stops)
 (${returnsInfo})

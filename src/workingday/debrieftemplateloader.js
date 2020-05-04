@@ -1,7 +1,7 @@
 // debrieftemplateloader.js 
 //  ~/workingday/debrieftemplateloader.js 
 // ----------------------------------------- 
-//  Debrief text generation template loader.
+//  Debrief report template loader.
 // 
 // --------------------------------------------- 
 // 	2020-05-03		BS		Created. 
@@ -10,60 +10,39 @@
 // 
 'use strict';
 
+
 const filepath = __dirname + '\\debrief-template.txt';
 
-const errorHandler = require('../errorHandler');
-
 /**
- * * Load the debrief text generation template.
+ * * Load the debrief report template.
  * * Returns a string.
  */
 const load = () => {
     const log = require('../log');
-    const la = m => {log.add(`[debriefloader]: ${m}`);};
-    la('started');
-    la(`filepath=${filepath}`);
-    var rv = '';
+    const lg = m => {log.add(`[debriefloader]: ${m}`, 'verbose');};
 
-    //
-    // * using promises
-    //
-    la('reading file');
-    const fs = require('fs');
-    fs.promises.readFile(filepath, 'utf8')
-        .catch(err => {
-            errorHandler.handle(err);
-            la('error!');
-        })
-        .then(content => {
-            la('file read complete');
-            la('content :-');
-            la('\n' + content);
-            rv = content;
-        },
-        () => {})
-        ;
+    lg('started');
+    lg(`filepath=${filepath}`);
+            
+    let rv = '';
+    try {
+        lg('reading file');
+        const fs = require('fs');
+        const content = fs.readFileSync(filepath, 'utf8');
+        
+        lg('file read complete');
+        lg('content :-');
+        lg('\n' + content);    
 
-    //
-    // ? using async/await
-    //
-    // (async () => {
-    //     try {
-    //         la('reading file');
-    //         const fs = require('fs');
-    //         const content = await fs.promises.readFile(filepath, 'utf8');
-    //         la('file read complete');
-    //         la('content :-')
-    //         la('\n' + content);
-    //         rv = content;
-    //     } catch (err) {
-    //         errorHandler.handle(err);
-    //         la('error!');
-    //     }
-    // })();
-    
-    
-    la('finished');
+        rv = content;
+
+    } catch (err) {
+        const errorHandler = require('../errorHandler');
+        errorHandler.handle(err);
+        lg(`error: ${err.message}`);
+    }
+        
+    lg('finished');
     return rv;
 };
 

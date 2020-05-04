@@ -10,21 +10,23 @@
 // 
 'use strict';
 
-const log = require('../log');
-const errorHandler = require('../errorHandler');
-
 /**
  * * Write a workingDay file to the data directory.
  * * Returns true if successful.
  * @param {workingDay} dayObject The workingDay object to save.
  */
 const performWrite = dayObject => {
+    
     const fn = 'daywriter.performWrite()';
+    const log = require('../log');
+    const lg = msg => { log.add(`[${fn}]: ${msg}`, 'verbose'); };
+
     // const workingDay = require('./workingday');
     // if (!dayObject || !(dayObject instanceof workingDay)) {
     //     throw new Error('Invalid workingDay object');
     // }
     if (!require('./fw-pv').isWorkingDayInstance(dayObject)) {
+        lg('invalid workingDay object');
         throw new Error('Invalid workingDay object');
     }
     
@@ -34,38 +36,39 @@ const performWrite = dayObject => {
         // get data directory
         const config = require('../config');
         const dirpath = config.WORKINGDAY.DATA_DIRECTORY_PATH;
-        log.add(`${fn}: data directory: ${dirpath}`);
+        lg(`data directory: ${dirpath}`);
 
         // build file name
         let filename = dayObject.getUniqueName();
         filename += '.' + config.WORKINGDAY.DATAFILE_USE_JSON_FILEEXT ?
             'json' : config.WORKINGDAY.DATAFILE_DEFAULTEXT;
-        log.add(`${fn}: generated filename: ${filename}`);
+        lg(`generated filename: ${filename}`);
         
         // get content
         const dataRaw = dayObject.toPersistanceDataString();
-        log.add(`${fn}: raw data length: ${dataRaw.length}`);
+        lg(`raw data length: ${dataRaw.length}`);
 
         // kablintzify it
         const enc = config.WORKINGDAY.DATAFILE_ENCODING;
         const fileData = Buffer.from(dataRaw, enc);
-        log.add(`${fn}: generated fileData: ${fileData.length}`);
+        lg(`generated fileData: ${fileData.length}`);
 
         //
         // write the file
-        log.add(`${fn}: writing file...`);
+        lg('writing file...');
         const fs = require('fs');
-        fs.writeFile(dirpath, fileData, () => {log.add(`${fn}: [fs.writeFile() callback]`);});
+        fs.writeFile(dirpath, fileData, () => { lg('[fs.writeFile() callback]'); });
         
-        log.add(`${fn}: [end-of-block]`);
+        lg('[end-of-block]');
 
         rv = true;
     } catch (err) {
+        const errorHandler = require('../errorHandler');
         errorHandler.handle(err);
-        log.add(`${fn}: handled error: ${err.message}`);
+        lg(`handled error: ${err.message}`);
     }
 
-    log.add(`${fn}: all done.`);
+    lg('all done.');
     return rv;
 };
 

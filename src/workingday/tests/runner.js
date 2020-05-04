@@ -16,7 +16,7 @@ const errorHandler = require('../../errorHandler');
 const dirpath = __dirname;
 
 const run = async () => {
-    const lg = msg => {log.add(`[testsrunner]: ${msg}`);};
+    const lg = msg => {log.add(`[testsrunner]: ${msg}`, 'verbose');};
     lg('started');
 
     lg(`dirpath: ${dirpath}`);

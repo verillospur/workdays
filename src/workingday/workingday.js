@@ -50,7 +50,7 @@ class workingDay {
     _setDate(date) {
         this._date = date;
         this._year = date.getFullYear();
-        this._month = date.getMonth();
+        this._month = date.getMonth() + 1;          // date.month is zero-based (dec=11! no!)
         this._day = date.getDate();
     }
 
@@ -113,9 +113,19 @@ class workingDay {
     get mileageLoading() {
         return this._mileageLoading
     }
+    set mileageLoading(v) {
+        this._mileageLoading = v;
+    }
 
     get mileageDebrief() {
         return this._mileageDebrief
+    }
+    set mileageDebrief(v) {
+        this._mileageDebrief = v;
+    }
+
+    get mileage() {
+        return (this._mileageDebrief - this.mileageLoading);
     }
     
     get routeNumber() {
@@ -129,29 +139,50 @@ class workingDay {
     get paymentOwed() {
         return this._paymentOwed;
     }
+    set paymentOwed(v) {
+        this._paymentOwed = v;
+    }
 
     get packageCount() {
         return this._packageCount;
+    }
+    set packageCount(v) {
+        this._packageCount = v;
     }
 
     get stopCount() {
         return this._stopCount;
     }
+    set stopCount(v) {
+        this._stopCount = v;
+    }
 
     get missingCount() {
         return this._missingCount;
+    }
+    set missingCount(v) {
+        this._missingCount = v;
     }
 
     get extrasCount() {
         return this._extrasCount;
     }
+    set extrasCount(v) {
+        this._extrasCount = v;
+    }
 
     get returnsCount() {
         return this._returnsCount;
     }
+    set returnsCount(v) {
+        this._returnsCount = v;
+    }
 
     get returnsInfo() {
         return this._returnsInfo;
+    }
+    set returnsInfo(v) {
+        this._returnsInfo = v;
     }
 
 
