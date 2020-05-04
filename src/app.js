@@ -21,8 +21,8 @@ const welcome = require('./welcome');
 welcome.show();
 
 
-// const runner = require('./workingday/tests/runner');
-// runner.run();
+const runner = require('./workingday/tests/runner');
+runner.run();
 
 
 const loader = require('./workingday/debrieftemplateloader');

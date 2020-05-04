@@ -24,20 +24,45 @@ const load = () => {
     la('started');
     la(`filepath=${filepath}`);
     var rv = '';
-    (async () => {
-        try {
-            la('reading file');
-            const fs = require('fs');
-            const content = await fs.promises.readFile(filepath, 'utf8');
-            la('file read complete');
-            la('content :-')
-            la(content);
-            rv = content;
-        } catch (err) {
+
+    //
+    // * using promises
+    //
+    la('reading file');
+    const fs = require('fs');
+    fs.promises.readFile(filepath, 'utf8')
+        .catch(err => {
             errorHandler.handle(err);
             la('error!');
-        }
-    })();
+        })
+        .then(content => {
+            la('file read complete');
+            la('content :-');
+            la('\n' + content);
+            rv = content;
+        },
+        () => {})
+        ;
+
+    //
+    // ? using async/await
+    //
+    // (async () => {
+    //     try {
+    //         la('reading file');
+    //         const fs = require('fs');
+    //         const content = await fs.promises.readFile(filepath, 'utf8');
+    //         la('file read complete');
+    //         la('content :-')
+    //         la('\n' + content);
+    //         rv = content;
+    //     } catch (err) {
+    //         errorHandler.handle(err);
+    //         la('error!');
+    //     }
+    // })();
+    
+    
     la('finished');
     return rv;
 };

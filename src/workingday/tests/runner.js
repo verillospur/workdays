@@ -21,14 +21,30 @@ const run = async () => {
 
     lg(`dirpath: ${dirpath}`);
 
-    const fs = require('fs');
-    lg('reading files');
-    const files = await fs.promises.readdir(dirpath);
-    lg('files read returned');
+    // const fs = require('fs');
+    // lg('reading files');
+    // const files = await fs.promises.readdir(dirpath);
+    // lg('files read returned');
 
-    files.forEach(f => {
-        lg(`-file: ${f}`);
-    });
+    lg('reading files');
+    const fs = require('fs');
+    fs.promises.readdir(dirpath)
+        .catch(err => {
+            errorHandler.handle(err);
+            lg('error!');
+        })
+        .then(
+            files => {
+                lg('files read returned');
+                files.forEach(f => {
+                    lg(`-file: ${f}`);
+                });
+            },
+            () => {
+                lg('files read rejected');
+            }
+        )
+    ;
 
     lg('finished');
 };
