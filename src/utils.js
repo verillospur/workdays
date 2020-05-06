@@ -19,7 +19,14 @@ const utils = {
     ,
 
     formatTime: t => moment(t).format(moment.HTML5_FMT.TIME)
-    
+
+    ,
+
+    generateName: require('./namegen')
+
+    ,
+
+    randomNumber: require('./randomnumber')
 
 };
 

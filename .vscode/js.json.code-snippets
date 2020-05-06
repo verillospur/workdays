@@ -39,5 +39,18 @@
 		"body": [
 			"log.add(``);"
 		],
+	},
+	"Property get/set": {
+		"scope": "javascript,typescript",
+		"prefix": "getset",
+		"description": "Property getter and setter",
+		"body": [
+			"get ${1:property}() {",
+			"\treturn this._${1:property};",
+			"}",
+			"set ${1:property}(v) {",
+			"\tthis._${1:property} = v;",
+			"}",
+		],
 	}
 }

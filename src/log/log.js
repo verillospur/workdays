@@ -176,8 +176,13 @@ const table = (data, level) => {
     level = level || DEFAULT_LOG_LEVEL;
 
     if (checkLevel(level)) {
-        const m = 'This function is not yet implemented.'
-        console.table([[m, data]]);
+        const w = '(log.table(): not yet implemented)'
+        // console.table([[w, data]]);
+        add(w, level);
+
+        let m = data;
+        // if (!Array.isArray(data)) m = [[data]];
+        console.table(m);
     }
 
     // todo TODO: this function

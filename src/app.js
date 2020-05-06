@@ -20,13 +20,16 @@ const workingDay = require('./workingday/workingday');
 const welcome = require('./welcome');
 welcome.show();
 
+const wf = require('./workflow');
+wf.WORKING_DAY.DEBRIEF_WORKFLOW.start();
+
+
 // const runner = require('./workingday/tests/runner');
 //runner.run();
 
-const tests = require('./workingday/tests');
+// const tests = require('./workingday/tests');
 // tests.day_store.generateDebriefText();
-tests.day_store.testWrite();
-
+// tests.day_store.testWrite();
 
 // const moment = require('moment');
 // const date10April20at0h15m = new Date(2020, 4, 10, 0, 15, 0, 0);
