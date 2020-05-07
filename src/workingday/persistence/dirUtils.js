@@ -10,7 +10,7 @@
 // 
 'use strict';
 
-const config = require('../config');
+const config = require('../../config');
 const path = require('path');
 const fs = require('fs');
 
@@ -43,7 +43,7 @@ const createDataDirectory = () => {
 
         rv = true;
     } catch (err) {
-        const errorHandler = require('../errorHandler');
+        const errorHandler = require('../../errorHandler');
         errorHandler.handle(err);
     }
     return rv;

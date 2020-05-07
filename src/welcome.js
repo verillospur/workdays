@@ -16,7 +16,7 @@ const showWelcome = () => {
 
     const config = require('./config');
     const moment = require('moment');
-    const du = require('./workingday/dirUtils');
+    const du = require('./workingday/persistence/dirUtils');
 
     log.line();
     log.add(`* Welcome to ${config.APP_NAME}`);

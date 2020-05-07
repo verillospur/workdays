@@ -202,14 +202,19 @@ class workingDay {
         return myClass._thing;
     }
 
-    static calculateShiftMinutes(start, finish) {
+    /**
+     * * Calculate actual minutes of shift time. 
+     * @param {Date} start * Loading time
+     * @param {Date} debrief Debrief time
+     */
+    static calculateShiftMinutes(start, debrief) {
         const moment = require('moment');
-        moment(finish).diff(moment(start), 'minutes');
+        moment(debrief).diff(moment(start), 'minutes');
     }
 
     //#endregion
 
-    //#region public methods
+    //#region instance methods
 
     //#region setShiftTimes()
 
@@ -258,6 +263,7 @@ class workingDay {
         const namer = require('./dayNamer');
         return namer.getUniqueName(this);
     }
+
 
     getValue() {
         return this._value;

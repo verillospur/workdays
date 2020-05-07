@@ -29,7 +29,7 @@ const test_write = dayObject => {
     try {
         
         lg(' writing...');
-        const writerFx = require('./../daywriter');
+        const writerFx = require('../persistence/daywriter');
         const writer = writerFx.create();
         const writerSuccess = writer.write(dayObject);
         

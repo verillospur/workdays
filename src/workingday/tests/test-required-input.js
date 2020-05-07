@@ -1,0 +1,69 @@
+// test-required-input.js 
+//  ~/workingday/tests/test-required-input.js
+// ----------------------------------------- 
+//  Test: workingDay required input
+// 
+// --------------------------------------------- 
+// 	2020-05-06		BS		Created. 
+// 
+// --------------------------------------------- 
+// 
+'use strict';
+
+const log = require('../../log');
+
+// ! bit of a "loop-back" as it were, here.... 
+// todo: sort it out!
+const getDefaultObject = () => require('../../workingday/tests').sample_day.create();
+
+/**
+ * * Generates a requiredInput object populated with test data.
+ * * Returns the requiredInput object if successful.
+ * @param {workingDay} dayObject The workingDay object to generate the object for.
+ * If no workingDay object is supplied, the default test sample object is used/created.
+ */
+const test_required_input = dayObject => {
+    const lg = msg => log.add(`[test_required_input()]: ${msg}`, 'verbose');
+    lg('started');
+
+    dayObject = dayObject || (() => { lg('using default object'); return getDefaultObject(); ; })();
+    
+    let rv = false;
+    let data;
+    try {
+ 
+        lg('creating requiredInput object');
+        const ri = require('../required-input');
+        data = ri();
+
+        lg('populating from workingDay object');
+        data.populateFromWorkingDayObject(dayObject);
+        
+        if (ri.routeNumber == dayObject.routeNumber 
+            && ri.date == dayObject.date
+            && ri.packageCount == dayObject.packageCount
+            && ri.stopCount == dayObject.stopCount
+            && ri.mileageLoading == dayObject.mileageLoading
+            && ri.mileageDebrief == dayObject.mileageDebrief
+            // that'll do
+            ) {
+
+            lg('seems to match');
+            lg(`workingDay.routeNumber=${dayObject.routeNumber}; requiredInput.routeNumber=${ri.routeNumber}`);
+            lg('etc');
+
+            rv = true;
+        }
+
+    } catch (err) {
+        const errorHandler = require('../../errorHandler');
+        errorHandler.handle(err);
+        lg(`error: ${err.message}`);
+    }
+
+    lg('finished');
+    // return rv;
+    return data;
+};
+
+module.exports = test_required_input;

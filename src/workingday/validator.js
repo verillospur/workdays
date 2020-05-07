@@ -16,7 +16,7 @@
  * @param {workingDay} dayObject The workingDay object to validate
  * @param {function} callback Validation callback: (err, validationSuccess, validationMessages[])
  */
-const validator = (dayObject, callback) => {
+const validate = (dayObject, callback) => {
 
     const log = require('../log');
     const lg = msg => { log.add(`[validator()]: ${msg}`, 'verbose') };
@@ -71,4 +71,9 @@ const validator = (dayObject, callback) => {
     }
 
     return success;
+};
+
+
+module.exports = {
+    validate: validate
 };

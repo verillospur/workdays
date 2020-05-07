@@ -38,7 +38,13 @@ const config = (() => {
 
         // * Template for debrief report.
         //
-        DEBRIEF_TEMPLATE: require('./debrieftemplateloader')
+        DEBRIEF_TEMPLATE: require('./debrieftemplateloader'),
+
+        // * Register
+        //
+        REGISTER: {
+            REGISTER_FILENAME: 'register.dat',
+        },
 
     };
 })();
