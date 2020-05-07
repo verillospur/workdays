@@ -39,17 +39,17 @@ const test_required_input = dayObject => {
         lg('populating from workingDay object');
         data.populateFromWorkingDayObject(dayObject);
         
-        if (ri.routeNumber == dayObject.routeNumber 
-            && ri.date == dayObject.date
-            && ri.packageCount == dayObject.packageCount
-            && ri.stopCount == dayObject.stopCount
-            && ri.mileageLoading == dayObject.mileageLoading
-            && ri.mileageDebrief == dayObject.mileageDebrief
+        if (data.routeNumber == dayObject.routeNumber 
+            && data.date == dayObject.date
+            && data.packageCount == dayObject.packageCount
+            && data.stopCount == dayObject.stopCount
+            && data.mileageLoading == dayObject.mileageLoading
+            && data.mileageDebrief == dayObject.mileageDebrief
             // that'll do
             ) {
 
             lg('seems to match');
-            lg(`workingDay.routeNumber=${dayObject.routeNumber}; requiredInput.routeNumber=${ri.routeNumber}`);
+            lg(`workingDay.routeNumber=${dayObject.routeNumber}; requiredInput.routeNumber=${data.routeNumber}`);
             lg('etc');
 
             rv = true;

@@ -11,6 +11,7 @@
 'use strict';
 
 const log = require('../../log');
+const config = require('../../config');
 
 /**
  * * Generate filename for a workingDay object
@@ -24,7 +25,7 @@ const getfilename = dayObject => {
     filename += (config.WORKINGDAY.DATAFILE_USE_JSON_FILEEXT ?
         'json' : config.WORKINGDAY.DATAFILE_DEFAULTEXT);
     
-    log.add(`getfilename(): generated filename: $${filename}`, 'verbose');
+    log.add(`getfilename(): generated filename: ${filename}`, 'verbose');
     log.add('getfilename(): started', 'finished');
     
     return filename;

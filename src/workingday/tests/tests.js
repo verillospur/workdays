@@ -39,7 +39,8 @@ const tests = {
     sample_day: {
 
         create: create_sample_day,
-        getWorkingDate: () => new Date()
+        createInput: dayObject => require('./test-required-input')(dayObject),
+        getWorkingDate: () => { const d = new Date(); return d; }
 
     }
     //#endregion

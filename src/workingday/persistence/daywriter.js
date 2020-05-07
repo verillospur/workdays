@@ -14,9 +14,8 @@ const path = require('path');
 const fs = require('fs');
 
 const log = require('../../log');
+const config = require('../../config');
 const errorHandler = require('../../errorHandler');
- 
-const getfilepath = require('./getfilepath');
 
 /**
  * * Write a workingDay file to the data directory.
@@ -42,7 +41,8 @@ const performWrite = dayObject => {
 
         //
         // get file path
-        const filepath = getfilepath(dayObject);
+        const getfilepath = require('./getfilepath');
+        const filepath = getfilepath.getfilepath(dayObject);
 
  
         //

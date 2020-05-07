@@ -75,8 +75,8 @@ class registryEntry {
         log.add('registerEntry.setPaths() started', 'verbose');
         if (dayObject) {
             
-            entry.filename = getfilename.getfilename(dayObject);
-            entry.filePath = getfilepath.getfilepath(dayObject);
+            this.filename = getfilename.getfilename(dayObject);
+            this.filePath = getfilepath.getfilepath(dayObject);
         }
     };
 
@@ -89,16 +89,46 @@ class registryEntry {
 //#region the register
 const register = (() => {
 
-    log.add('register.setPaths() started', 'finished');
+    log.add('register()', 'verbose');
     return {
 
         entries: [],
 
-        addEntry: dayObject => {
-            const entry = new registryEntry(dayObject);
-            setPaths(entry);
-            this.entries.push(entry);
+        addEntry: function(dayObject) {
+            try {
+                const entry = new registryEntry(dayObject);
+                entry.setPaths(dayObject);
+                this.entries.push(entry);
+            } catch (err) {
+                errorHandler.handle(err);
+            }
         },
+
+        load: function() {
+            const lg = msg => { log.add(`register.load(): ${msg}`, 'verbose'); };
+            try {
+                lg('started');
+                this.entries = io.loadEntries();
+                lg('completed successfully');
+            } catch (err) {
+                errorHandler.handle(err);
+                lg(`error: ${err.message}`);
+            }
+        },
+
+        save: function() {
+            const lg = msg => { log.add(`register.save(): ${msg}`, 'verbose'); };
+            try {
+                lg('started');
+                
+                io.saveEntries(this.entries);
+
+                lg('completed successfully');
+            } catch (err) {
+                errorHandler.handle(err);
+                lg(`error: ${err.message}`);
+            }
+        }
 
     };
 

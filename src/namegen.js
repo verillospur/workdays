@@ -30,6 +30,8 @@ const nmsS = [
 ];
 
 const get_name = () => {
+    log.add('get_name() started', 'verbose');
+
     const rnd = require('./randomnumber');
 
     const pi = Math.round((rnd() * (nmsP.length -1)));
@@ -42,6 +44,9 @@ const get_name = () => {
     const s = nmsS[ si ];
     const n = Math.round(rnd() * seed /99000000);
     const rv = `${p}-${s}-${n}`;
+
+    log.add(`get_name() returning: ${rv}`, 'verbose');
+    
     return rv;
 };
 

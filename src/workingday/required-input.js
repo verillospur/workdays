@@ -20,6 +20,7 @@ const DEFAULT_VALUE = '<undefined>';
 const REQUIRED = () => {
     // const o = () => {
     function requiredInput() {
+        log.add('constructor: requiredInput()', 'verbose');
 
         this.defaultValue = DEFAULT_VALUE;
         this.date = DEFAULT_VALUE;
@@ -39,7 +40,8 @@ const REQUIRED = () => {
     requiredInput.prototype.getName = function() { return this.name; };
     
     //#region create-workingday
-    requiredInput.prototype.createWorkingDayObject = () => {
+    requiredInput.prototype.createWorkingDayObject = function() {
+        log.add('requiredInput.createWorkingDayObject() started', 'verbose');
 
         // create object
         const obj = new workingDay(this.date);
@@ -60,13 +62,17 @@ const REQUIRED = () => {
         obj.shiftActualMinutes = 
             workingDay.calculateShiftMinutes(this.timeLoading, this.timeDebrief);
 
+        log.add('requiredInput.createWorkingDayObject() created object successfully.', 'verbose');
+
         // return it, den, init
         return obj;
     };
     //#endregion
     
-    requiredInput.prototype.populateFromWorkingDayObject = obj =>{
+    requiredInput.prototype.populateFromWorkingDayObject = function(obj) {
+        log.add('requiredInput.populateFromWorkingDayObject() started.', 'verbose');
         if (obj) {
+            this.date = obj.date;
             this.routeNumber = obj.routeNumber;
             this.mileageLoading = obj.mileageLoading;
             this.mileageDebrief = obj.mileageDebrief;
@@ -77,15 +83,12 @@ const REQUIRED = () => {
             this.breakMinutes = obj.breakMinutes;
             this.returnsCount = obj.returnsCount;
             this.returnsInfo = obj.returnsInfo;
+            log.add('requiredInput.populateFromWorkingDayObject() populated successfully.', 'verbose');
         }
     };
 
 
     const o = new requiredInput();
-    // o.name = utils.generateName();
-    // o.prototype.getName = () => this.name;
-    requiredInput.prototype.name = 'well here it is...';
-
     return o;
 };
 

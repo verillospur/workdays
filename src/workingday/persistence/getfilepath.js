@@ -23,7 +23,7 @@ const getfilename = require('./getfilename');
  * @param {workingDay} dayObject Object to generate filename for.
  */
 const getfilepath = dayObject => {
-    const lg = msg => { log.add(`[${getfilepath}]: ${msg}`, 'verbose'); };
+    const lg = msg => { log.add(`[getfilepath()]: ${msg}`, 'verbose'); };
     lg('started');
 
     // get data directory
@@ -46,7 +46,7 @@ const getfilepath = dayObject => {
     // stick em together
     const filepath = path.join(dirpath, filename);
     
-    lg(`generated filepath: $${filepath}`);
+    lg(`generated filepath: ${filepath}`);
     lg('finished');
     
     return filepath;
@@ -55,3 +55,4 @@ const getfilepath = dayObject => {
 module.exports = {
     getfilepath: getfilepath
 };
+// module.exports = getfilepath;
