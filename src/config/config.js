@@ -21,7 +21,8 @@ const config = () => {
             ],
 
         LOG: require('../log/config'),
-        WORKINGDAY: require('../workingday/config')
+        WORKINGDAY: require('../workingday/config'),
+        SERVER: require('../server/webapp/config'),
     };
 };
 

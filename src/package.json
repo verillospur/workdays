@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/verillospur/workdays#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "moment": "^2.24.0"
   }
 }

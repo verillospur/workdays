@@ -20,8 +20,9 @@ const workingDay = require('./workingday/workingday');
 const welcome = require('./welcome');
 welcome.show();
 
-const wf = require('./workflow');
-wf.WORKING_DAY.DEBRIEF_WORKFLOW.start();
+
+// const wf = require('./workflow');
+// wf.WORKING_DAY.DEBRIEF_WORKFLOW.start();
 
 
 // const runner = require('./workingday/tests/runner');
