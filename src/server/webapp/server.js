@@ -1,7 +1,7 @@
 // server.js 
 //  ~/server/server.js 
 // ----------------------------------------- 
-//  Entry point for server functions
+//  Entry point for webapp server 
 // 
 // --------------------------------------------- 
 // 	2020-05-08		BS		Created. 
@@ -10,8 +10,8 @@
 // 
 'use strict';
 
-const config = require('../config');
-const log = require('../log');
+const config = require('../../config');
+const log = require('../../log');
 
 const path = require('path');
 
@@ -50,7 +50,7 @@ const server = function() {
         // todo: remove
         else {
             lg('test-server: todo: REMOVE');
-            context.expressApp = { name: 'testapp-' + require('../utils').generateName() };
+            context.expressApp = { name: 'testapp-' + require('../../utils').generateName() };
         }
 
         lg('finished');

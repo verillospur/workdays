@@ -12,7 +12,23 @@
 
 const log = require('./log');
 
-const showWelcome = () => {
+const showWelcome = app => {
+
+    let appMsg = '';
+    if (app) {
+        switch (app) {
+            case 'webapp':
+                appMsg = '-- w e b a p p --';
+                break;
+            case 'service':
+                    appMsg = '-- s e r v i c e --';
+                    break;
+            case '':
+            default:
+                appMsg = '-- c o n s o l e --';
+                break;
+        }
+    }
 
     const config = require('./config');
     const moment = require('moment');
@@ -20,6 +36,11 @@ const showWelcome = () => {
 
     log.line();
     log.add(`* Welcome to ${config.APP_NAME}`);
+
+    if (appMsg.length > 0) {
+        log.add(`* ${appMsg}`);
+    }
+
     const appwmsg = config.APP_WMSG;
     if (appwmsg && appwmsg.length > 0) {
         if (Array.isArray(appwmsg)) {

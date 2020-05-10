@@ -7,13 +7,42 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "WATester",
+            "program": "${workspaceFolder}\\src\\server\\webapp\\__tester.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "LOG_LEVEL": "verbose",
+                "WEBAPP_PORT": "427",
+            },
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "WebApp",
+            "program": "${workspaceFolder}\\src\\server\\webapp\\_launcher.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "LOG_LEVEL": "verbose",
+                "WEBAPP_PORT": "427",
+            },
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Go!",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\src\\app.js",
             "env": {
-                "LOG_LEVEL": "verbose"
+                "LOG_LEVEL": "verbose",
+                "WEBAPP_PORT": "427",
             },
             "internalConsoleOptions": "openOnSessionStart"
         }
