@@ -44,6 +44,7 @@ const config = (() => {
         //
         REGISTER: {
             REGISTER_FILENAME: 'register.dat',
+            AUTOLOAD: true,
         },
 
     };

@@ -1,0 +1,12 @@
+html body {
+    background-color: black;
+    color: rgb(90, 81, 81);
+}
+.parent {
+  display: flex;
+  height: 200px;
+  margin: 10px;
+}
+.child {
+  margin: 5px;
+}

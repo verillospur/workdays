@@ -30,9 +30,8 @@ welcome.show();
 // * ***************************************************
 
 
-const sv = require('./server/webapp/__tester');
-log.add(sv.run());
-
+const px = require('./workingday/persistence');
+const reg = require('./workingday/persistence/register');
 
 // const wf = require('./workflow');
 // wf.WORKING_DAY.DEBRIEF_WORKFLOW.start();

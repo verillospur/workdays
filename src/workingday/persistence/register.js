@@ -26,6 +26,7 @@ class registryEntry {
         log.add('constructor: registerEntry', 'verbose');
 
         this._dayObject = dayObject;
+        this._date = dayObject.date;
         this._name = dayObject.getUniqueName();
         this._isPersisted = false;
         this._filename = '';
@@ -41,6 +42,13 @@ class registryEntry {
     }
     set dayObject(v) {
         this._dayObject = v;
+    }
+
+    get date() {
+        return this._date;
+    }
+    set date(v) {
+        this._date = v;
     }
 
     get name() {
@@ -86,56 +94,7 @@ class registryEntry {
 }
 //#endregion
 
-//#region the register
-const register = (() => {
-
-    log.add('register()', 'verbose');
-    return {
-
-        entries: [],
-
-        addEntry: function(dayObject) {
-            try {
-                const entry = new registryEntry(dayObject);
-                entry.setPaths(dayObject);
-                this.entries.push(entry);
-            } catch (err) {
-                errorHandler.handle(err);
-            }
-        },
-
-        load: function() {
-            const lg = msg => { log.add(`register.load(): ${msg}`, 'verbose'); };
-            try {
-                lg('started');
-                this.entries = io.loadEntries();
-                lg('completed successfully');
-            } catch (err) {
-                errorHandler.handle(err);
-                lg(`error: ${err.message}`);
-            }
-        },
-
-        save: function() {
-            const lg = msg => { log.add(`register.save(): ${msg}`, 'verbose'); };
-            try {
-                lg('started');
-                
-                io.saveEntries(this.entries);
-
-                lg('completed successfully');
-            } catch (err) {
-                errorHandler.handle(err);
-                lg(`error: ${err.message}`);
-            }
-        }
-
-    };
-
-})();
-//#endregion
-
-
+//#region io
 const io = (() => {
 
     const getregisterpath = () => {
@@ -182,6 +141,61 @@ const io = (() => {
         }
     };
 })();
+//#endregion
+
+//#region the register
+const register = (() => {
+
+    log.add('register()', 'verbose');
+    const reg = {
+
+        entries: [],
+
+        addEntry: function(dayObject) {
+            try {
+                const entry = new registryEntry(dayObject);
+                entry.setPaths(dayObject);
+                this.entries.push(entry);
+            } catch (err) {
+                errorHandler.handle(err);
+            }
+        },
+
+        load: function() {
+            const lg = msg => { log.add(`register.load(): ${msg}`, 'verbose'); };
+            try {
+                lg('started');
+                this.entries = io.loadEntries();
+                lg('completed successfully');
+            } catch (err) {
+                errorHandler.handle(err);
+                lg(`error: ${err.message}`);
+            }
+        },
+
+        save: function() {
+            const lg = msg => { log.add(`register.save(): ${msg}`, 'verbose'); };
+            try {
+                lg('started');
+                
+                io.saveEntries(this.entries);
+
+                lg('completed successfully');
+            } catch (err) {
+                errorHandler.handle(err);
+                lg(`error: ${err.message}`);
+            }
+        }
+
+    };
+    if (config.WORKINGDAY.REGISTER.AUTOLOAD) {
+        reg.load();
+    }
+
+    return reg;
+
+})();
+//#endregion
 
 
 

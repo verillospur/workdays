@@ -29,6 +29,7 @@ const config = (() => {
         
         // * View names
         VIEW_INDEX: 'index',
+        VIEW_DATA: 'data',
 
 
     };

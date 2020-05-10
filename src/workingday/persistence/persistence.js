@@ -12,10 +12,10 @@
 
 const log = require('../../log');
 
-
 const persistence = (() => {
     return {
 
+        //#region saveWorkingDay
         saveWorkingDay: dayObject => {
             const lg = msg => { log.add(`[saveWorkingDay()]: ${msg}`, 'verbose'); };
 
@@ -53,9 +53,48 @@ const persistence = (() => {
             }
         
             return rv;
-        }
+        },
+        //#endregion
 
+        loadWorkingDay: date => {
+            const lg = msg => { log.add(`[loadWorkingDay()]: ${msg}`, 'verbose'); };
+            lg('started');
+
+            let d;
+            let d_ok = false;
+            if (date) {
+                try {
+                    d = new Date(Date.parse(date.toString()));
+                    d_ok = true;
+                } catch (err) {
+                }
+            }
+            if (!d_ok) {
+                lg('error: invalid date argument');
+                throw new Error('Invalid date.');
+            }
+
+            lg(`using date: ${d}`);
+
+            const workingDay = require('../workingday');
+            let rv;
+            try {
+
+                
+
+                rv = new workingDay(d);
+                
+            } catch (err) {
+                lg(`error: ${err.msg}`);
+                const errorHandler = require('../../errorHandler');
+                errorHandler.handle(err);
+            }
+
+            lg('returning workingDay object');
+            return rv;
+        }
     }
+
 })();
 
 module.exports = persistence;

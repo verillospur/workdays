@@ -18,6 +18,8 @@ const path = require('path');
 const server = function() {
     
     const context = { expressApp: 'not-initialised' };
+    const indexRouter = require('./routes/index');
+    const dataRouter = require('./routes/data');
 
     const start_server = () => {
         const lg = msg => { log.add(`[server]: ${msg}`, 'verbose'); };
@@ -39,8 +41,9 @@ const server = function() {
             app.use(express.static(path.join(__dirname, config.SERVER.STATIC_ROOT)));
 
             // setup routes
-            var router = express.Router();
-            app.use(router.get('/', (req, res, send) => { res.render(config.SERVER.VIEW_INDEX, { page_title: '' }); }));
+            app.use('/', indexRouter.get_router());
+            app.use('/data', dataRouter.get_router());
+            
 
             // remember express app (grabbed by bin/www)
             context.expressApp = app;
