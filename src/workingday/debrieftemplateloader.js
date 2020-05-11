@@ -39,7 +39,7 @@ const load = () => {
     } catch (err) {
         const errorHandler = require('../errorHandler');
         errorHandler.handle(err);
-        lg(`error: ${err.message}`);
+        lg(`error: ${err}`);
     }
         
     lg('finished');

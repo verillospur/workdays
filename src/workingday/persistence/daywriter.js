@@ -69,7 +69,7 @@ const performWrite = dayObject => {
     } catch (err) {
 
         errorHandler.handle(err);
-        lg(`handled error: ${err.message}`);
+        lg(`handled error: ${err}`);
     }
 
 

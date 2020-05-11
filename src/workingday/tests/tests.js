@@ -23,6 +23,38 @@ const create_sample_day = () => {
     return o;
 };
 
+const create_sample_days = count => {
+    count = count || 10;
+
+    const endDate = tests.sample_day.getWorkingDate();
+
+    const rv = [];
+
+    const moment = require('moment');    
+    for (let diff = 0; diff < count; diff++) {
+        
+        const date = moment(endDate).subtract(diff, 'day').toDate();
+        
+        const o = new workingDay(date);
+        o.setShiftTimes(
+            8 + (Math.round(Math.random() * 4)), 
+            (Math.round(Math.random() * 12) * 5), 
+            17 + (Math.round(Math.random() * 3)), 
+            (Math.round(Math.random() * 12) * 5), 
+            (Math.round(Math.random() * 30)), 
+        );
+        o.routeNumber = 'T' + (300 + ((10 * diff) +1)).toString();
+        o.packageCount = Math.round((Math.random() * 250));
+        o.stopCount = Math.round((Math.random() * 160));
+        o.mileageLoading = (5264 * diff);
+        o.mileageDebrief = (5264 * diff) + (15 * diff);
+        
+        rv.push(o);
+    }
+    
+    return rv;
+};
+
 const tests = {
 
     //#region day_store
@@ -39,6 +71,7 @@ const tests = {
     sample_day: {
 
         create: create_sample_day,
+        createMany: create_sample_days,
         createInput: dayObject => require('./test-required-input')(dayObject),
         getWorkingDate: () => { const d = new Date(); return d; }
 

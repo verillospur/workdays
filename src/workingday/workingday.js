@@ -1,5 +1,4 @@
-// workingday.js 
-//  ~/workingday/workingday.js 
+ //  ~/workingday/workingday.js 
 // ----------------------------- 
 //  workingDay class definition. 
 // 
@@ -10,16 +9,21 @@
 // 
 'use strict';
 
+const log = require('../log');
+
 /**
  * * Represents a single completed working day.
  */
 class workingDay {
 
+    _DEFAULT_ID_VALUE() { return '-1'; }
+
     constructor(date) {
+        log.add('workingDay constructor() started');
 
         //#region property initialisation
 
-        this._value = 'Value!';
+        this._id = this._DEFAULT_ID_VALUE();
 
         const now = date || new Date();
 
@@ -48,15 +52,57 @@ class workingDay {
     //#region private methods
 
     _setDate(date) {
+        log.add('workingDay._setDate() started');
+        
         this._date = date;
         this._year = date.getFullYear();
         this._month = date.getMonth() + 1;          // date.month is zero-based (dec=11! no!)
         this._day = date.getDate();
+
+        // * set id
+        this._setId(date);
+    }
+
+    _setId(date) {
+        log.add('workingDay._setId() started');
+
+        let n = -1;
+        try {
+
+            const d = new Date(date.getUTCFullYear(), date.getUTCMonth() +1, date.getUTCDate(), 0, 0, 0, 0);
+            const ms = Date.parse(d);
+            n = Number(ms);
+            
+        } catch (err) {
+            log.add(`workingDay._setId(): error squishing n from d: ${err}`);
+        }
+
+        let b = false;
+        if (n > 0) {
+            this._id = n;
+            b = true;
+
+            log.add(`workingDay._setId(): set _id to: ${this._id}`);
+        }
+
+        return b;
     }
 
     //#endregion
 
     //#region property accessors
+
+    get id() {
+
+        if (this._id == this._DEFAULT_ID_VALUE()) {
+            this._setId(this.date);
+        }
+
+        return this._id;
+    }
+    set id(v) {
+        this._id = v;
+    }
 
     get date() {
         return this._date;
@@ -279,6 +325,12 @@ class workingDay {
 
     //#endregion
 
+    toString() {
+
+        // const d = new Date();
+        // d.toDateString()
+        return `[workingDay:\"${this.getUniqueName()}\"(${this.id})]`;
+    }
 
 };
 

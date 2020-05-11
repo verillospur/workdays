@@ -26,7 +26,7 @@ const fieldValidation = (() => {
                 }
 
             } catch (err) {
-                log.add(`fieldValidation.checkString(): error: ${err.message}`);
+                log.add(`fieldValidation.checkString(): error: ${err}`);
             }
             log.add(`fieldValidation.checkString() validated: \"${o}\"`);
             return rv;
@@ -46,7 +46,7 @@ const fieldValidation = (() => {
                 }
                 
             } catch (err) {
-                log.add(`fieldValidation.checkNonZeroNumber(): error: ${err.message}`);
+                log.add(`fieldValidation.checkNonZeroNumber(): error: ${err}`);
             }
             log.add(`fieldValidation.checkNonZeroNumber() validated: ${o}`);
             return true;
@@ -65,7 +65,7 @@ const fieldValidation = (() => {
                 }
                 
             } catch (err) {
-                log.add(`fieldValidation.checkDate(): error: ${err.message}`);
+                log.add(`fieldValidation.checkDate(): error: ${err}`);
             }
             log.add(`fieldValidation.checkDate() validated: ${o}`);
             return true;
@@ -170,7 +170,7 @@ const validate = (dayObject, callback) => {
         // validation fails
         success = false;
         error = err;
-        lg(`validation failed: error: ${err.message}`);
+        lg(`validation failed: error: ${err}`);
     }
 
     //

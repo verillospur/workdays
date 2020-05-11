@@ -20,6 +20,10 @@ const errorHandler = require('../../errorHandler');
 const getfilename = require('./getfilename'); 
 const getfilepath = require('./getfilepath'); 
 
+const stripTime = date => {
+    return new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), 0, 0, 0, 0);
+};
+
 //#region registryEntry class
 class registryEntry {
     constructor(dayObject) {
@@ -27,6 +31,7 @@ class registryEntry {
 
         this._dayObject = dayObject;
         this._date = dayObject.date;
+        this._id = dayObject.id;
         this._name = dayObject.getUniqueName();
         this._isPersisted = false;
         this._filename = '';
@@ -49,6 +54,13 @@ class registryEntry {
     }
     set date(v) {
         this._date = v;
+    }
+
+    get id() {
+        return this._id;
+    }
+    set id(v) {
+        this._id = v;
     }
 
     get name() {
@@ -125,6 +137,8 @@ const io = (() => {
             }
             return register.entries;
         },
+
+
         saveEntries: entries => {
             try {
                 log.add('writing register');
@@ -132,11 +146,11 @@ const io = (() => {
                 const registerData = JSON.stringify(register);
                 const buffer = Buffer.from(registerData, config.WORKINGDAY.DATAFILE_ENCODING);
                 const filepath = getregisterpath();
-                fs.writeFileSync(filepath, registerData, config.WORKINGDAY.DATAFILE_ENCODING);
+                fs.writeFileSync(filepath, buffer, config.WORKINGDAY.DATAFILE_ENCODING);
                 log.add(`register saved to: ${filepath}`);
             } catch (err) {
                 errorHandler.handle(err);
-                log.add(`error saving register entries: ${err.message}`);
+                log.add(`error saving register entries: ${err}`);
             }
         }
     };
@@ -169,7 +183,7 @@ const register = (() => {
                 lg('completed successfully');
             } catch (err) {
                 errorHandler.handle(err);
-                lg(`error: ${err.message}`);
+                lg(`error: ${err}`);
             }
         },
 
@@ -183,15 +197,63 @@ const register = (() => {
                 lg('completed successfully');
             } catch (err) {
                 errorHandler.handle(err);
-                lg(`error: ${err.message}`);
+                lg(`error: ${err}`);
             }
+        },
+
+        findByDate: function(date) {
+            const lg = msg => { log.add(`register.findByDate(): ${msg}`, 'verbose'); };
+
+            let rv;
+            try {
+                lg('started');
+                
+                if (this.entries.length == 0) {
+                    lg('loading entries');
+                    this.load();
+                }
+
+                rv = this.entries.find(e => stripTime(e.date) == stripTime(date));
+
+            } catch (err) {
+                errorHandler.handle(err);
+                lg(`error: ${err}`);
+            }
+
+            lg('returning entry: ' + rv);
+            return rv;
+        },
+
+        findById: function(id) {
+            const lg = msg => { log.add(`register.findById(): ${msg}`, 'verbose'); };
+
+            let rv;
+            try {
+                lg('started');
+                
+                if (this.entries.length == 0) {
+                    lg('loading entries');
+                    this.load();
+                }
+
+                rv = this.entries.find(e => e.id == id);
+
+            } catch (err) {
+                errorHandler.handle(err);
+                lg(`error: ${err}`);
+            }
+
+            lg('returning entry: ' + rv);
+            return rv;
         }
 
     };
     if (config.WORKINGDAY.REGISTER.AUTOLOAD) {
+        log.add('autoload: register.load()');
         reg.load();
     }
 
+    log.add('returning register: ' + reg);
     return reg;
 
 })();

@@ -30,8 +30,14 @@ welcome.show();
 // * ***************************************************
 
 
-const px = require('./workingday/persistence');
-const reg = require('./workingday/persistence/register');
+
+
+const tests = require('./workingday/tests');
+log.table(tests.sample_day.createMany(3).map(o => o.toString()));
+
+
+// const px = require('./workingday/persistence');
+// const reg = require('./workingday/persistence/register');
 
 // const wf = require('./workflow');
 // wf.WORKING_DAY.DEBRIEF_WORKFLOW.start();
