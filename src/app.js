@@ -15,25 +15,35 @@ const exec = require('./exec');
 log.add('Working...', log.levels.info);
 log.add('... apparently.', log.levels.verbose);
 
-const workingDay = require('./workingday/workingday');
-
 const welcome = require('./welcome');
 welcome.show();
 
 
-// * ***************************************************
-// ! ---------------------------------------------------
-// ?----------------------------------------------------
-// todo: this. complete the tests runner.
-// ?----------------------------------------------------
-// ! ---------------------------------------------------
-// * ***************************************************
+/*
+    * reset data
+*/
+// const da = require('./workingday/persistence/admin');
+// da.reset_data();
 
 
+                                            /*
+* ***************************************************
+ ! ---------------------------------------------------
+  ?----------------------------------------------------
+ todo: this. complete the tests runner.
+  ?----------------------------------------------------
+ ! ---------------------------------------------------
+* ***************************************************
+                                */
+
+
+// const workingDay = require('./workingday/workingday');
 
 
 const tests = require('./workingday/tests');
-log.table(tests.sample_day.createMany(3).map(o => o.toString()));
+const reg = tests.sample_day.createSampleRegister(13);
+log.add(reg);
+log.add(reg.entries.length);
 
 
 // const px = require('./workingday/persistence');

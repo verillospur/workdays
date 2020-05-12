@@ -1,6 +1,7 @@
 html body {
     background-color: black;
     color: rgb(90, 81, 81);
+    padding: 10px;
 }
 .parent {
   display: flex;
@@ -9,4 +10,15 @@ html body {
 }
 .child {
   margin: 5px;
+}
+
+.things {
+  display: flex;
+  flex-flow: wrap;
+}
+.things .thing {
+  margin: 5px;
+  padding: 8px;
+  border: 1px outset rgb(85, 40, 40);
+  background-color: rgb(24, 6, 6)
 }

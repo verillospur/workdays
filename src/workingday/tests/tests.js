@@ -55,6 +55,20 @@ const create_sample_days = count => {
     return rv;
 };
 
+const create_sample_register = count => {
+    const log = require('../../log');
+    log.add('creating sample register');
+
+    const reg = require('../persistence/register');
+    reg.entries = [];
+
+    const days = create_sample_days(count);
+    days.forEach(d => reg.addEntry(d));
+    
+    return reg;
+
+};
+
 const tests = {
 
     //#region day_store
@@ -72,6 +86,7 @@ const tests = {
 
         create: create_sample_day,
         createMany: create_sample_days,
+        createSampleRegister: create_sample_register,
         createInput: dayObject => require('./test-required-input')(dayObject),
         getWorkingDate: () => { const d = new Date(); return d; }
 

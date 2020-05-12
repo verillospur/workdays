@@ -7,11 +7,43 @@
     
   </head>
   <body>
+    
+    <div class="border-bottom">
+      <h3>Manage Data</h3>
+    </div>
+    
 
-    <div class="parent">
-        <div class="child shadow p-3">
-            <h1>Manage Data</h1>
+    <div class="container-fluid">
+  
+  <%
+  let col = 1;
+  for (let i = 0; i < context.data.entries.length; i++) {
+    let item = context.data.entries[i];
+  %>
+      <% if (col == 1) { %>
+      <div class="row">
+      <% } %>
+
+        <div class="col-sm">
+          
+          <div class="border rounded ">
+            <strong><a href="#"><%= item.date.toDateString() %></a></strong>
+            <br />
+            <span><%= item.dayObject.routeNumber %></span>
+          </div>
+
         </div>
+
+      
+      <% 
+      if (col == 3) { 
+        col = 1;
+      %>
+      </div>
+      <% } else { col++; } %>
+  <%
+  } 
+  %>
     </div>
 
     <%- include('inc/footer'); %>

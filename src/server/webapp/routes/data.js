@@ -15,7 +15,7 @@ const lg = msg => { log.add(`[data_router()]: ${msg}`, 'verbose'); };
 
 const config = require('../../../config');
 
-const get_router = () => {
+const get_router = context => {
 
     lg('started');
     const express = require('express');
@@ -30,6 +30,7 @@ const get_router = () => {
                 config.SERVER.VIEW_DATA,
                 {
                     page_title: 'Manage Data',
+                    context: context
                 }
             );
         }

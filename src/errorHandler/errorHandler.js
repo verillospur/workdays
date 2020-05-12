@@ -16,10 +16,14 @@
  * @param {boolean} doNotSuppress If true, throws the error after handling
  */
 const handler = (e, doNotSuppress) => {
-    const log = require('../log');    
-    log.error(e, log.getLevels().error);
-    doNotSuppress = doNotSuppress || false;
-    if (doNotSuppress) throw e;
+    try {
+        const log = require('../log');    
+        log.error(e, log.getLevels().error);
+        doNotSuppress = doNotSuppress || false;
+        log.error((new Error()).stack, log.getLevels().error);
+        if (doNotSuppress) throw e;
+    } catch (ex) {
+    }
 };
 
 module.exports = {

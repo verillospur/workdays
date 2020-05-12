@@ -22,14 +22,17 @@ const server = function() {
     const dataRouter = require('./routes/data');
 
     const start_server = () => {
-        const lg = msg => { log.add(`[server]: ${msg}`, 'verbose'); };
+        const lg = msg => { log.add(`[server]: ${msg}`, log.getLevels().verbose); };
         lg('started');
 
         if (!config.SERVER.TESTS_USETESTRUNSERVER) {
 
+            context.data = require('../../workingday/tests').sample_day.createSampleRegister(23);
+
             lg('setting up express app');
             const express = require('express');
             const app = express();
+            context.expressApp = app;
 
             // setup views
             app.set('views', path.join(__dirname, config.SERVER.VIEWS_ROOT));
@@ -41,19 +44,16 @@ const server = function() {
             app.use(express.static(path.join(__dirname, config.SERVER.STATIC_ROOT)));
 
             // setup routes
-            app.use('/', indexRouter.get_router());
-            app.use('/data', dataRouter.get_router());
+            app.use('/', indexRouter.get_router(context));
+            app.use('/data', dataRouter.get_router(context));
             
-
-            // remember express app (grabbed by bin/www)
-            context.expressApp = app;
         }
 
         // test server 
         // todo: remove
         else {
             lg('test-server: todo: REMOVE');
-            context.expressApp = { name: 'testapp-' + require('../../utils').generateName() };
+            context.expressApp = { name: 'oomph. use .data', data: 'testapp-' + require('../../utils').generateName() };
         }
 
         lg('finished');
