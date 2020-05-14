@@ -30,6 +30,7 @@ class registryEntry {
         log.add('constructor: registerEntry', 'verbose');
 
         this._dayObject = dayObject;
+        this._user = dayObject.user;
         this._date = dayObject.date;
         this._id = dayObject.id;
         this._name = dayObject.getUniqueName();
@@ -47,6 +48,13 @@ class registryEntry {
     }
     set dayObject(v) {
         this._dayObject = v;
+    }
+
+    get user() {
+        return this._user;
+    }
+    set user(v) {
+        this._user = v;
     }
 
     get date() {

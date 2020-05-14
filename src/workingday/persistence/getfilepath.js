@@ -40,8 +40,18 @@ const getfilepath = dayObject => {
         lg('data directory created');
     }
 
+    // get user
+    const user = dayObject.user;
+    const userDir = `user_${user}`;
+    lg(`userdir=${userDir}`);
+
+    // check path
+    const userdirpath = path.join(dirpath, userDir);
+    lg(`userdirpath=${userdirpath}`);
+
     // get filename
     const filename = getfilename.getfilename(dayObject);
+    lg(`filename=${filename}`);
 
     // stick em together
     const filepath = path.join(dirpath, filename);

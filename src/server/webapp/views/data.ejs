@@ -8,14 +8,17 @@
   </head>
   <body>
     
-    <div class="border-bottom">
+    <div class="border-bottom mb-2">
       <h3>Manage Data</h3>
     </div>
     
 
+    <div class="overflow-auto viewer border-bottom border-left">
+    
     <div class="container-fluid">
   
   <%
+  const numColumns = 5;
   let col = 1;
   for (let i = 0; i < context.data.entries.length; i++) {
     let item = context.data.entries[i];
@@ -26,25 +29,38 @@
 
         <div class="col-sm">
           
-          <div class="border rounded ">
+          <div class="border rounded mb-2 pl-1 pr-2 pb-1 thing">
             <strong><a href="#"><%= item.date.toDateString() %></a></strong>
             <br />
             <span><%= item.dayObject.routeNumber %></span>
+            <div class="border pl-1 debriefReport overflow-auto" 
+             style="max-height: 50px;">
+              <%- item.dayObject.debriefReport %>
+            </div>
           </div>
 
         </div>
 
       
       <% 
-      if (col == 3) { 
+      if (col == numColumns) { 
         col = 1;
       %>
       </div>
       <% } else { col++; } %>
   <%
   } 
+  if (col != 1) {
+    for (let i = 0; i < ((numColumns - col) +1) ; i++) {
+      %>
+      <div class="col-sm"></div>
+      <%
+    }
+  }
   %>
     </div>
+    
+  </div>
 
     <%- include('inc/footer'); %>
 

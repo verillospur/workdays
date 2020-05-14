@@ -1,6 +1,6 @@
 html body {
-    background-color: black;
-    color: rgb(90, 81, 81);
+    background-color: rgb(24, 21, 21);
+    color: rgb(114, 114, 114);
     padding: 10px;
 }
 .parent {
@@ -12,13 +12,12 @@ html body {
   margin: 5px;
 }
 
-.things {
-  display: flex;
-  flex-flow: wrap;
+.thing {
+  background-color: rgb(41, 38, 38);
 }
-.things .thing {
-  margin: 5px;
-  padding: 8px;
-  border: 1px outset rgb(85, 40, 40);
-  background-color: rgb(24, 6, 6)
+.debriefReport {
+  font-size: .8em;
+}
+.viewer {
+  max-height: 450px;
 }

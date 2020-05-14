@@ -40,12 +40,6 @@ welcome.show();
 // const workingDay = require('./workingday/workingday');
 
 
-const tests = require('./workingday/tests');
-const reg = tests.sample_day.createSampleRegister(13);
-log.add(reg);
-log.add(reg.entries.length);
-
-
 // const px = require('./workingday/persistence');
 // const reg = require('./workingday/persistence/register');
 

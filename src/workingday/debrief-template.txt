@@ -1,10 +1,10 @@
-Name: Ben Sturley
-Date: ${year}-${month}-${day}
-Reg: NA67 VGX
-Mileage: ${mileage}
-Route: ${routeNumber}
-Parcels: ${packageCount} (${stopCount} stops)
-(${returnsInfo})
-Load time: ${loadingTime}
-Break: ${breakMinutes} mins
-Debrief time: ${debriefTime}
+Name: Ben Sturley<br />
+Date: ${year}-${month}-${day}<br />
+Reg: NA67 VGX<br />
+Mileage: ${mileage}<br />
+Route: ${routeNumber}<br />
+Parcels: ${packageCount} (${stopCount} stops)<br />
+<!--(${returnsInfo})<br />-->
+Load time: ${loadingTime}<br />
+Break: ${breakMinutes} mins<br />
+Debrief time: ${debriefTime}<br />

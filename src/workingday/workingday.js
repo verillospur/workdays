@@ -18,12 +18,13 @@ class workingDay {
 
     _DEFAULT_ID_VALUE() { return '-1'; }
 
-    constructor(date) {
+    constructor(user, date) {
         log.add('workingDay constructor() started');
 
         //#region property initialisation
 
         this._id = this._DEFAULT_ID_VALUE();
+        this._user = user;
 
         const now = date || new Date();
 
@@ -91,6 +92,13 @@ class workingDay {
     //#endregion
 
     //#region property accessors
+
+    get user() {
+        return this._user;
+    }
+    set user(v) {
+        this._user = v;
+    }
 
     get id() {
 
@@ -329,7 +337,7 @@ class workingDay {
 
         // const d = new Date();
         // d.toDateString()
-        return `[workingDay:\"${this.getUniqueName()}\"(${this.id})]`;
+        return `[workingDay:${this.getUniqueName()}(${this.user}-${this.id})]`;
     }
 
 };

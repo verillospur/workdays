@@ -27,7 +27,7 @@ const server = function() {
 
         if (!config.SERVER.TESTS_USETESTRUNSERVER) {
 
-            context.data = require('../../workingday/tests').sample_day.createSampleRegister(23);
+            context.data = require('../../workingday/tests').sample_day.createSampleRegister(22);
 
             lg('setting up express app');
             const express = require('express');

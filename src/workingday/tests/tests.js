@@ -64,6 +64,9 @@ const create_sample_register = count => {
 
     const days = create_sample_days(count);
     days.forEach(d => reg.addEntry(d));
+
+    const reporter = require('../debriefReport');
+    days.forEach(d => d.debriefReport = reporter.generateReport(d));
     
     return reg;
 
