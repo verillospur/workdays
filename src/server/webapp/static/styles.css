@@ -1,6 +1,6 @@
 html body {
-    background-color: rgb(24, 21, 21);
-    color: rgb(114, 114, 114);
+    background-color: rgb(21, 10, 49); /*rgb(13, 5, 66);*/
+    color: rgb(160, 160, 160);
     padding: 10px;
 }
 .parent {
@@ -12,12 +12,21 @@ html body {
   margin: 5px;
 }
 
-.thing {
-  background-color: rgb(41, 38, 38);
-}
-.debriefReport {
-  font-size: .8em;
-}
 .viewer {
   max-height: 450px;
+}
+
+.workingday {
+  background-color: rgb(29, 24, 51);
+}
+.workingday .debriefReport {
+  background-color: rgb(38, 32, 65);
+  font-size: .8em;
+}
+.workingday .date {
+  letter-spacing: 0.05em;
+}
+.workingday .routeNumber {
+  letter-spacing: 0.1em;
+  font-weight: 500;
 }

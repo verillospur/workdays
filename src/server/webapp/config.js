@@ -20,6 +20,9 @@ const config = (() => {
         // * Auto-start server on first request for app
         //
         AUTO_START: true,
+
+        // * Port to listen on
+        PORT: process.env.WEBAPP_PORT || 3000,
         
         // * Directory names for various server dwubs
         // * Relative to ~/server/
@@ -30,6 +33,7 @@ const config = (() => {
         // * View names
         VIEW_INDEX: 'index',
         VIEW_DATA: 'data',
+        VIEW_NEWDAY: 'newday',
 
 
     };

@@ -18,7 +18,8 @@ require('../../welcome').show('webapp');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.WEBAPP_PORT || '3000');
+var config = require('../../config');
+var port = normalizePort(config.SERVER.PORT || process.env.WEBAPP_PORT || '3000');
 app.set('port', port);
 
 /**

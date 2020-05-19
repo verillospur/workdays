@@ -53,8 +53,9 @@ const showWelcome = app => {
         }
     }
     log.add(`* Started: ${moment().format(moment.HTML5_FMT.DATETIME_LOCAL)}`);
-    log.add(`* Log level: ${config.LOG.LEVEL}`);
-    log.add(`* Data directory: ${du.getDataDirectoryPath()}`);
+    log.add(`* ( log level: ${config.LOG.LEVEL} )`); 
+    log.add(`* ( tcp port: ${config.SERVER.PORT} )`); 
+    log.add(`* ( data directory: ${du.getDataDirectoryPath()} )`);
     log.line();
 
 

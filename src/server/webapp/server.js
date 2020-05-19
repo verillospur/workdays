@@ -19,6 +19,7 @@ const server = function() {
     
     const context = { expressApp: 'not-initialised' };
     const indexRouter = require('./routes/index');
+    const newdayRouter = require('./routes/newday');
     const dataRouter = require('./routes/data');
 
     const start_server = () => {
@@ -45,6 +46,7 @@ const server = function() {
 
             // setup routes
             app.use('/', indexRouter.get_router(context));
+            app.use('/newday', newdayRouter.get_router(context));
             app.use('/data', dataRouter.get_router(context));
             
         }

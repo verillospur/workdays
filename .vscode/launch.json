@@ -43,6 +43,7 @@
             "env": {
                 "LOG_LEVEL": "verbose",
                 "WEBAPP_PORT": "2427",
+                "WEBAPP_TEST_DUMMYCOUNT": "15",
             },
             "internalConsoleOptions": "openOnSessionStart"
         }
