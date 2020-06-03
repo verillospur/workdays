@@ -19,6 +19,20 @@ const welcome = require('./welcome');
 welcome.show();
 
 
+const impt = require('./server/importer');
+const oo = impt();
+console.log('oo.reader: %o, oo.reader(): %s', oo.reader, oo.reader());
+console.log('%cblue?', 'font-size: x-large')
+// log.add(oo.reader);
+// log.add(oo.reader());
+
+
+// const ri = require('./workingday/required-input');
+// const data = ri();
+// log.add(data.getName);
+
+
+
 /*
     * reset data
 */

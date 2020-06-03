@@ -59,6 +59,8 @@ const create_sample_register = count => {
     const log = require('../../log');
     log.add('creating sample register');
 
+    count = count || 1;
+
     const reg = require('../persistence/register');
     reg.entries = [];
 
